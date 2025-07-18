@@ -14,10 +14,10 @@ You can install `glmLink` from GitHub using the `remotes` package:
 # Install remotes package if not already installed
 install.packages("remotes") 
 
-# Install ipcr package
+# Install glmLink package
 remotes::install_github("jpirmer/glmLink")
 
-# Load ipcr package
+# Load glmLink package
 library(glmLink)
 ```
 
