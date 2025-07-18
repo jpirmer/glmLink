@@ -1,16 +1,14 @@
 Package: glmLink
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Power Analysis and Estimation for Cross-Classified LMM
 Version: 0.1.0
-Authors@R: c(
-    person(
-      "Jane", "Doe",
-      email = "jane@example.com",
-      role = c("aut", "cre")
-    )
-  )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
-License: What license is it under?
+Authors@R:
+  person(given = "Julien", family = "Irmer", role = c("aut", "cre"),
+         email = "jpirmer@gmail.com")
+Description: Provides functions for computing power, simulating binary outcomes, fitting a parametric power model via maximum likelihood, and obtaining confidence intervals through delta-method approximations.
+Depends: R (>= 4.0)
+Imports: numDeriv, stats
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.3.1
