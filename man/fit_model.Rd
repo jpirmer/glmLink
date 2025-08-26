@@ -2,27 +2,47 @@
 % Please edit documentation in R/fit.R
 \name{fit_model}
 \alias{fit_model}
-\title{Fit parametric power model}
+\title{Fit parametric power model with robust start/jitter loop}
 \usage{
 fit_model(
   dat,
   alpha = 0.05,
   test = "onesided",
-  start = c(logbeta0 = 0, logtheta = 0, logr = 0)
+  parameterization = "natural",
+  start = NULL,
+  transform = TRUE,
+  max_tries = 25,
+  jitter_scale = 0.5,
+  eps_flat_sd = 1e-06,
+  eps_edges = 1e-10
 )
 }
 \arguments{
-\item{dat}{Data frame with y, m1, m2.}
+\item{dat}{Data frame with columns y, m1, m2.}
 
 \item{alpha}{Significance level.}
 
 \item{test}{'onesided' or 'twosided'.}
 
-\item{start}{Named numeric vector of log-parameters.}
+\item{parameterization}{Passed to power_fun.}
+
+\item{start}{Optional numeric vector of length 3 (phi). If NULL,
+defaults depend on \code{transform}.}
+
+\item{transform}{If TRUE, \code{phi} are log-parameters (mapped via exp()).}
+
+\item{max_tries}{Maximum optimization attempts.}
+
+\item{jitter_scale}{Jitter amplitude for new starts.}
+
+\item{eps_flat_sd}{Threshold for sd(P) to flag flat power curves.}
+
+\item{eps_edges}{Threshold near 0/1 to flag degenerate power.}
 }
 \value{
-An object of class 'power_model'.
+An object of class \code{power_model}.
 }
 \description{
-Fit parametric power model
+Tries optimization from reasonable starts, jitters on failure,
+and only accepts solutions that are converged, finite, and non-degenerate.
 }

@@ -7,11 +7,12 @@
 sim_data(
   M1M2_grid,
   beta0_true,
-  theta_true,
-  r_true,
+  beta1_true,
+  beta2_true,
   alpha = 0.05,
   seed = NULL,
-  test = "onesided"
+  test = "onesided",
+  parameterization = "natural"
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ sim_data(
 \item{seed}{Random seed for reproducibility.}
 
 \item{test}{'onesided' or 'twosided'.}
+
+\item{parameterization}{If 'natural', then beta1 and beta2 correspond to first and second random variance. Might be numerically unstable.}
 }
 \value{
 Data frame with simulated y and true power.

@@ -4,22 +4,33 @@
 \alias{power_fun}
 \title{Compute power for cross-classified LMM}
 \usage{
-power_fun(m1, m2, beta0, theta, r, alpha = 0.05, test = "onesided")
+power_fun(
+  m1,
+  m2,
+  beta0,
+  beta1,
+  beta2,
+  alpha = 0.05,
+  test = "onesided",
+  parameterization = "natural"
+)
 }
 \arguments{
 \item{m1}{Number of level-1 units per cluster.}
 
 \item{m2}{Number of level-2 units per cluster.}
 
-\item{beta0}{Critical z-value (e.g., -1.96), negative for left tail.}
+\item{beta0}{beta0. This maps to the critical z-value (e.g., -1.96), negative for left tail.}
 
-\item{theta}{True effect size parameter.}
+\item{beta1}{beta1. This maps to the first random variance if \code{parameterization} is \code{"natural"}.}
 
-\item{r}{Intraclass correlation.}
+\item{beta2}{beta2. This maps to the second random variance if \code{parameterization} is \code{"natural"}.}
 
 \item{alpha}{Significance level.}
 
 \item{test}{'onesided' or 'twosided'.}
+
+\item{parameterization}{If 'natural', then beta1 and beta2 correspond to first and second random variance. Might be numerically unstable.}
 }
 \value{
 Power (probability of rejecting null).

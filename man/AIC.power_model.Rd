@@ -7,12 +7,12 @@
 \method{AIC}{power_model}(object, ...)
 }
 \arguments{
-\item{object}{A 'power_model' object}
+\item{object}{A 'power_model' object.}
 
-\item{...}{Additional arguments (ignored)}
+\item{...}{Further arguments passed to methods.}
 }
 \value{
-AIC value
+A numeric value with class "AIC".
 }
 \description{
 AIC method for power_model objects

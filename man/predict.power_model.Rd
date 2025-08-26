@@ -2,22 +2,31 @@
 % Please edit documentation in R/predict.R
 \name{predict.power_model}
 \alias{predict.power_model}
-\title{Delta-method confidence intervals on power predictions}
+\title{Predict power with Delta-method CIs}
 \usage{
-\method{predict}{power_model}(object, newdata, level = 0.95, use.robust = FALSE)
+\method{predict}{power_model}(
+  object,
+  newdata = NULL,
+  level = 0.95,
+  use.robust = FALSE,
+  transform = object$transform
+)
 }
 \arguments{
 \item{object}{A 'power_model' fit.}
 
-\item{newdata}{Data frame with m1, m2.}
+\item{newdata}{Optional data.frame with columns m1, m2.
+If NULL, the stored m1/m2 in the fitted object are used.}
 
 \item{level}{Confidence level.}
 
-\item{use.robust}{Use robust variance.}
+\item{use.robust}{Use robust (sandwich) covariance.}
+
+\item{transform}{Use the same transformation as during fitting by default.}
 }
 \value{
-Data frame with estimates and CIs.
+List with Power_hat, se, ci.
 }
 \description{
-Delta-method confidence intervals on power predictions
+Predict power with Delta-method CIs
 }
