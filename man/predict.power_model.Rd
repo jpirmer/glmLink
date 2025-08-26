@@ -2,7 +2,7 @@
 % Please edit documentation in R/predict.R
 \name{predict.power_model}
 \alias{predict.power_model}
-\title{Predict power with Delta-method CIs}
+\title{Predict power with Delta-method CIs for power_model}
 \usage{
 \method{predict}{power_model}(
   object,
@@ -15,18 +15,22 @@
 \arguments{
 \item{object}{A 'power_model' fit.}
 
-\item{newdata}{Optional data.frame with columns m1, m2.
-If NULL, the stored m1/m2 in the fitted object are used.}
+\item{newdata}{Optional data.frame with columns m1, m2. If NULL, uses the
+training design stored in the fitted object.}
 
-\item{level}{Confidence level.}
+\item{level}{Confidence level for two-sided CIs (default 0.95).}
 
-\item{use.robust}{Use robust (sandwich) covariance.}
+\item{use.robust}{If TRUE, use sandwich covariance; otherwise model-based.}
 
-\item{transform}{Use the same transformation as during fitting by default.}
+\item{transform}{Logical, whether to interpret \code{opt_phi} on the log-phi
+scale (as in the fit). Defaults to \code{object$transform}.}
 }
 \value{
-List with Power_hat, se, ci.
+A list with components:
+  \item{Power_hat}{Vector of predicted power at rows of \code{newdata}.}
+  \item{se}{Vector of Delta-method standard errors.}
+  \item{ci}{N x 2 matrix with columns \code{cilb}, \code{ciub}.}
 }
 \description{
-Predict power with Delta-method CIs
+Predict power with Delta-method CIs for power_model
 }

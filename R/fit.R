@@ -211,3 +211,33 @@ model_data.power_model <- function(object) {
   x + stats::runif(length(x), min = -scale, max = scale)
 }
 
+
+#' coef method for power_model objects
+#'
+#' @param object A 'power_model' object.
+#' @param transform Logical, whether to back-transform from log-phi.
+#'   Defaults to object$transform.
+#' @param ... Unused.
+#' @return Named numeric vector of coefficients (beta0, beta1, beta2).
+#' @export
+coef.power_model <- function(object, transform = object$transform, ...) {
+  pars <- stabilityTransformation(object$opt_phi, transform = transform)
+  c(beta0 = pars$beta0,
+    beta1 = pars$beta1,
+    beta2 = pars$beta2)
+}
+
+
+#' Print method for power_model objects
+#'
+#' @param x A 'power_model' object.
+#' @param ... Unused.
+#' @export
+print.power_model <- function(x, ...) {
+  cat("Power model fit\n")
+  cat(paste0("  logLik:", round(x$ll, 3), "  (nobs =", nobs(x), ")\n"))
+  cat("  Converged:", x$conv == 0, " after", x$tries, "tries\n\n")
+  cat(paste0("Coefficients (",x$parameterization," parameterization):\n"))
+  print(coef(x), digits = 4)
+  invisible(x)  # return full object invisibly
+}
